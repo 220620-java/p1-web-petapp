@@ -40,6 +40,8 @@
 	</dependencies>
 
 	<build>
+		<!-- this will set the context path for your http requests -->
+		<finalName>petapp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

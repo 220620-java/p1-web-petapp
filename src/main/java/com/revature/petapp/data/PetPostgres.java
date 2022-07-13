@@ -65,6 +65,7 @@ public class PetPostgres implements PetDAO {
 					+ "pet.name, " 
 					+ "age, " 
 					+ "pet.description, "
+					+ "status.id as status_id, "
 					+ "status.name as status_name, "
 					+ "species.id as species_id, " 
 					+ "species.name as species_name, "

@@ -19,6 +19,7 @@ public class RequestMapper {
 		// add each delegate with its path
 		delegateMap.put("pets", new PetDelegate());
 		delegateMap.put("users", new UserDelegate());
+		delegateMap.put("auth", new AuthDelegate());
 	}
 	
 	/**

@@ -12,15 +12,12 @@ import com.revature.petapp.models.Species;
 import com.revature.petapp.models.Status;
 import com.revature.petapp.models.User;
 import com.revature.petapp.utils.ConnectionUtil;
-import com.revature.petapp.utils.Logger;
-import com.revature.petapp.utils.LoggingLevel;
 
 public class UserPostgres implements UserDAO {
 	private ConnectionUtil connUtil = ConnectionUtil.getConnectionUtil();
-	private Logger logger = Logger.getLogger();
 
 	@Override
-	public User create(User user) {
+	public User create(User user) throws SQLException {
 		try (Connection conn = connUtil.getConnection()) {
 			// because this is a transaction (DML), we'll start by
 			// setting autocommit to false
@@ -50,6 +47,9 @@ public class UserPostgres implements UserDAO {
 			}
 
 		} catch (SQLException e) {
+			if (e.getMessage().contains("unique constraint")) {
+				throw e;
+			}
 			e.printStackTrace();
 		}
 
@@ -138,11 +138,9 @@ public class UserPostgres implements UserDAO {
 
 		// try-with-resources: sets up closing for closeable resources
 		try (Connection conn = connUtil.getConnection()) {
-			logger.log("Connected to the database...", LoggingLevel.DEBUG);
 			// set up the SQL statement that we want to execute
 			String sql = "select id, username, passwd from person where username=?";
 
-			logger.log("Statement: " + sql, LoggingLevel.DEBUG);
 			// set up that statement with the database
 			// preparedstatement is pre-processed to prevent sql injection
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -153,17 +151,14 @@ public class UserPostgres implements UserDAO {
 
 			// process the result set
 			if (resultSet.next()) {
-				logger.log("User found in database", LoggingLevel.TRACE);
 				user = new User();
 				user.setId(resultSet.getInt("id"));
 				user.setUsername(resultSet.getString("username"));
 				user.setPassword(resultSet.getString("passwd"));
 				user.setPets(this.getPetsByUser(user, conn));
-				logger.log(user.toString(), LoggingLevel.DEBUG);
 			}
 
 		} catch (SQLException e) {
-			logger.log(e.getMessage(), LoggingLevel.ERROR);
 			//e.printStackTrace();
 		}
 
@@ -171,7 +166,6 @@ public class UserPostgres implements UserDAO {
 	}
 	
 	private List<Pet> getPetsByUser(User user, Connection conn) throws SQLException {
-		logger.log("Getting the user's pets", LoggingLevel.TRACE);
 		List<Pet> pets = new ArrayList<>();
 		
 		String sql = "select pet.id, " 
@@ -209,7 +203,6 @@ public class UserPostgres implements UserDAO {
 			pet.setId(resultSet.getInt("id"));
 			pet.setStatus(status);
 			
-			logger.log("Adding pet: " + pet.getName(), LoggingLevel.DEBUG);
 			pets.add(pet);
 		}
 		

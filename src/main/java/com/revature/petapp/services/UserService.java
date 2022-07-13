@@ -48,4 +48,20 @@ public interface UserService {
 	 * @throws AlreadyAdoptedException
 	 */
 	public User adoptPet(Pet pet, User user) throws AlreadyAdoptedException;
+	
+	/**
+	 * Retrieves the pet that has the specified ID.
+	 * 
+	 * @param id
+	 * @return the pet with the ID, or null if the pet doesn't exist
+	 */
+	public Pet getPet(int id);
+
+	/**
+	 * Retrieves the user that has the specified ID.
+	 * 
+	 * @param id
+	 * @return the user with the ID, or null if the user doesn't exist
+	 */
+	public User getUser(int id);
 }

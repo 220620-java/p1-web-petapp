@@ -1,5 +1,6 @@
 package com.revature.petapp.data;
 
+import java.sql.SQLException;
 import java.util.List;
 
 // data access object or "DAO"
@@ -16,8 +17,9 @@ public interface DataAccessObject<T> {
 	 * 
 	 * @param t the object to be added to the data source
 	 * @return the object that was added or null if the object was unable to be added
+	 * @throws SQLException if the unique constraint for username was violated
 	 */
-	public T create(T t);
+	public T create(T t) throws SQLException;
 	
 	/**
 	 * Retrieves the object from the data source that matches 

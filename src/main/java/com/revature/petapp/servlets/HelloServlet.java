@@ -10,6 +10,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 // our servlets should extend HttpServlet
+@Deprecated
+/**
+ * not using this anymore because of the switch to Front Controller Design Pattern,
+ * but keeping it as an example for those who want to use multiple servlets on p1.
+ * 
+ * @author SierraNicholes
+ *
+ */
 public class HelloServlet extends HttpServlet {
 	// the servlet container (tomcat catalina) will call this method when
 	// a GET request comes in to the right path and it will create the objects

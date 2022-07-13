@@ -1,5 +1,7 @@
 package com.revature.petapp.services;
 
+import java.sql.SQLException;
+
 import com.revature.petapp.data.PetDAO;
 import com.revature.petapp.data.PetPostgres;
 import com.revature.petapp.models.Pet;
@@ -9,7 +11,11 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Pet addPet(Pet pet) {
-		return petDao.create(pet);
+		try {
+			return petDao.create(pet);
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 
 	@Override

@@ -18,6 +18,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Deprecated
+/**
+ * not using this anymore because of the switch to Front Controller Design Pattern,
+ * but keeping it as an example for those who want to use multiple servlets on p1.
+ * 
+ * @author SierraNicholes
+ *
+ */
 public class PetServlet extends HttpServlet {
 	private UserService userServ = new UserServiceImpl();
 	private AdminService adminServ = new AdminServiceImpl();
