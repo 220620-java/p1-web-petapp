@@ -45,19 +45,18 @@ public class ConnectionUtil {
 		Connection conn = null;
 		
 		// using environment variables
-//		String dbUrl = System.getenv("DB_URL");
-//		String dbUser = System.getenv("DB_USER");
-//		String dbPass = System.getenv("DB_PASS");
+		String dbUrl = System.getenv("DB_URL");
+		String dbUser = System.getenv("DB_USER");
+		String dbPass = System.getenv("DB_PASS");
 		
 		// using properties file
-		String dbUrl = props.getProperty("url");
-		String dbUser = props.getProperty("usr");
-		String dbPass = props.getProperty("psw");
+		// String dbUrl = props.getProperty("url");
+		// String dbUser = props.getProperty("usr");
+		// String dbPass = props.getProperty("psw");
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(
-					// jdbc:postgresql://pet-app.cziwys5p2mwa.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=pet_app0
 					dbUrl,
 					dbUser,
 					dbPass);
