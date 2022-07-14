@@ -20,7 +20,7 @@ public class ConnectionUtil {
 		//props = new Properties();
 		
 		//InputStream propsFile = ConnectionUtil.class.getClassLoader()
-				.getResourceAsStream("database.properties");
+		//		.getResourceAsStream("database.properties");
 		//try {
 		//	props.load(propsFile);
 		//} catch (IOException e) {
