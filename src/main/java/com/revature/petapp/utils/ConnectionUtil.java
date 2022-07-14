@@ -12,20 +12,20 @@ import java.util.Properties;
 public class ConnectionUtil {
 	// singleton: private constructor, public static synchronized getter method
 	private static ConnectionUtil connUtil;
-	private Properties props;
+	//private Properties props;
 	
 	private ConnectionUtil() {
 		// this constructor can be blank if you're not using
 		// a properties file for your connection info
-		props = new Properties();
+		//props = new Properties();
 		
-		InputStream propsFile = ConnectionUtil.class.getClassLoader()
+		//InputStream propsFile = ConnectionUtil.class.getClassLoader()
 				.getResourceAsStream("database.properties");
-		try {
-			props.load(propsFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//try {
+		//	props.load(propsFile);
+		//} catch (IOException e) {
+		//	e.printStackTrace();
+		//}
 	}
 	
 	public static synchronized ConnectionUtil getConnectionUtil() {
